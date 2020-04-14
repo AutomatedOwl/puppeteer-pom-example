@@ -3,7 +3,7 @@ const puppeteer = require("puppeteer-core");
 const findChromiumPath = require("./utils/find-chromium-path");
 require('dotenv').config();
 
-async function puppeteerExample() {
+const puppeteerExample = async () =>  {
 
     // Get chromium executable path
     const CHROMIUM_PATH =
@@ -38,6 +38,6 @@ async function puppeteerExample() {
 
     // Close browser;
     await browser.close();
-}
+};
 
 puppeteerExample();
