@@ -1,6 +1,6 @@
 import { WebHostPage } from "./pages/WebHostPage";
 const puppeteer = require("puppeteer-core");
-const envConfig = require("./utils/config");
+const envConfig = require("./config/config");
 const findChromiumPath = require("./utils/find-chromium-path");
 require("dotenv").config();
 
