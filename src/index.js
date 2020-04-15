@@ -1,5 +1,6 @@
 import { WebHostPage } from "./pages/WebHostPage";
 const puppeteer = require("puppeteer-core");
+const envConfig = require("./utils/config");
 const findChromiumPath = require("./utils/find-chromium-path");
 require("dotenv").config();
 
@@ -13,12 +14,12 @@ const puppeteerExample = async () => {
   // Launch puppeteer
   const browser = await puppeteer.launch({
     executablePath: CHROMIUM_PATH,
-    headless: isHeadless(),
-    args: getChromiumArgs(),
+    headless: envConfig.isHeadless(),
+    args: envConfig.getChromiumArgs(),
   });
 
   // Log Headless mode
-  console.log("Headless Mode: " + isHeadless());
+  console.log("Headless Mode: " + envConfig.isHeadless());
 
   // Initialize WebHost page
   let webHostPage = new WebHostPage(await getCurrentPage(browser));
@@ -34,14 +35,6 @@ const puppeteerExample = async () => {
 
   // Close browser;
   await browser.close();
-};
-
-const getChromiumArgs = () => {
-  return process.env.CHROMIUM_ARGS.split(" ");
-};
-
-const isHeadless = () => {
-  return process.env.HEADLESS === "true";
 };
 
 const getCurrentPage = async (browser) => {
