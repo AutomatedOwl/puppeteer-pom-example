@@ -21,7 +21,7 @@ const puppeteerExample = async () => {
   console.log("Headless Mode: " + isHeadless());
 
   // Initialize WebHost page
-  let webHostPage = new WebHostPage(await browser.newPage());
+  let webHostPage = new WebHostPage(await getCurrentPage(browser));
 
   // Navigate to URL
   await webHostPage.open();
@@ -42,6 +42,10 @@ const getChromiumArgs = () => {
 
 const isHeadless = () => {
   return process.env.HEADLESS === "true";
+};
+
+const getCurrentPage = async (browser) => {
+  return (await browser.pages())[0];
 };
 
 puppeteerExample();
