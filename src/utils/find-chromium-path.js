@@ -12,7 +12,10 @@ let findChromiumPath = function (dir, pattern) {
 
       // Get stats to determine if path is a directory or a file
       let stat = fs.statSync(dirInner);
-      let dirLength = fs.readdirSync(dirInner).length;
+      let dirLength;
+      if (stat.isDirectory()) {
+        dirLength = fs.readdirSync(dirInner).length;
+      }
 
       // If path is a file and ends with pattern then push it onto results
       if (stat.isDirectory() && dirInner.includes(pattern)) {
@@ -23,7 +26,7 @@ let findChromiumPath = function (dir, pattern) {
 
       // If path is a directory, scan it and combine results
       if (stat.isDirectory() && dirLength != 0) {
-        results = results.concat(findChromiumPath(dirInner, pattern));
+        findChromiumPath(dirInner, pattern);
       }
     }
   });
