@@ -5,7 +5,7 @@ export class WebHostPage {
   }
 
   open() {
-    return this.page.goto("https://testjs2.000webhostapp.com/", {
+    return this.page.goto("http://testjs.epizy.com/", {
       waitUntil: "domcontentloaded",
     });
   }
