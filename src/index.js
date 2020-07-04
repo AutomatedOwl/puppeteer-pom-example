@@ -8,7 +8,7 @@ require("dotenv").config();
 const CHROMIUM_PATH =
   findChromiumPath("./node_modules/puppeteer", "chrome-linux") + "/chrome";
 const BEFORE_CLOSE_DELAY_MILLISECS = 5000;
-const INPUT_TEXT = "Hello World";
+const INPUT_TEXT = "Hello World Puppeteer";
 
 const puppeteerExample = async () => {
   // Launch puppeteer
