@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-pom-example",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
@@ -9,8 +9,8 @@
   "dependencies": {
     "dotenv": "8.2.0",
     "file-regex": "3.1.0",
-    "puppeteer": "2.1.1",
-    "puppeteer-core": "2.1.1"
+    "puppeteer": "latest",
+    "puppeteer-core": "latest"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
