@@ -3,17 +3,27 @@ const puppeteer = require("puppeteer-core");
 const envConfig = require("./config/config");
 const findChromiumPath = require("./utils/find-chromium-path");
 require("dotenv").config();
+let path = require('path');
 
 // Get chromium executable path
-const CHROMIUM_PATH =
-  findChromiumPath("./node_modules/puppeteer", "chrome-linux") + "/chrome";
+var opsys = process.platform;
+console.log(opsys);
+let chromePath = null;
+if (opsys == "linux") {
+  chromePath  =
+    findChromiumPath("node_modules/puppeteer", "chrome-linux") + "/chrome";
+} else if (opsys == "win32" || opsys == "win64") {
+  chromePath =
+    findChromiumPath(path.normalize("node_modules/puppeteer"), "chrome-win") + "\\chrome.exe";
+}
+console.log(chromePath);
 const BEFORE_CLOSE_DELAY_MILLISECS = 5000;
 const INPUT_TEXT = "Hello World Puppeteer";
 
 const puppeteerExample = async () => {
   // Launch puppeteer
   const browser = await puppeteer.launch({
-    executablePath: CHROMIUM_PATH,
+    executablePath: chromePath ,
     headless: envConfig.isHeadless(),
     args: envConfig.getChromiumArgs(),
   });
